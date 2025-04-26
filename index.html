@@ -1,1 +1,988 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sachin Solanki - Portfolio</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary: #4361ee;
+        --secondary: #3f37c9;
+        --dark: #2b2d42;
+        --light: #f8f9fa;
+        --accent: #4cc9f0;
+        --success: #4cc9a0;
+        --text: #2b2d42;
+        --text-light: #6c757d;
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--light);
+        color: var(--text);
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+
+      /* Scrollbar styling */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--light);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--primary);
+        border-radius: 5px;
+      }
+
+      /* Header styling */
+      header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        text-align: center;
+        padding: 5rem 1rem 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          rgba(76, 201, 240, 0.15) 0%,
+          rgba(67, 97, 238, 0.15) 100%
+        );
+        z-index: 1;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Navigation */
+      nav {
+        background-color: white;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        padding: 0.75rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        transition: var(--transition);
+      }
+
+      nav.scrolled {
+        padding: 0.5rem 0;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      nav ul {
+        display: flex;
+        justify-content: center;
+        list-style: none;
+      }
+
+      nav a {
+        color: var(--text);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        margin: 0 0.25rem;
+        border-radius: 4px;
+        font-weight: 500;
+        transition: var(--transition);
+        position: relative;
+      }
+
+      nav a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary);
+        transition: var(--transition);
+        transform: translateX(-50%);
+      }
+
+      nav a:hover {
+        color: var(--primary);
+      }
+
+      nav a:hover::after {
+        width: 80%;
+      }
+
+      /* Profile */
+      .profile-img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        margin: 0 auto 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.5rem;
+        color: white;
+        border: 5px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+        transition: var(--transition);
+      }
+
+      .profile-img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        letter-spacing: 1px;
+        animation: fadeInUp 1s ease;
+      }
+
+      header p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        max-width: 700px;
+        margin: 0 auto 1.5rem;
+        animation: fadeInUp 1s 0.2s both;
+      }
+
+      .contact-links {
+        display: flex;
+        justify-content: center;
+        margin-top: 1.5rem;
+        flex-wrap: wrap;
+        animation: fadeInUp 1s 0.4s both;
+      }
+
+      .contact-links a {
+        color: white;
+        margin: 0.5rem;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 30px;
+        background-color: rgba(255, 255, 255, 0.15);
+        transition: var(--transition);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .contact-links a:hover {
+        background-color: rgba(255, 255, 255, 0.25);
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Sections */
+      section {
+        padding: 5rem 0;
+        position: relative;
+      }
+
+      section:nth-child(odd) {
+        background-color: white;
+      }
+
+      h2 {
+        font-size: 2.2rem;
+        margin-bottom: 3rem;
+        color: var(--dark);
+        text-align: center;
+        position: relative;
+      }
+
+      h2::after {
+        content: "";
+        display: block;
+        width: 70px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        margin: 0.75rem auto 0;
+        border-radius: 2px;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+        color: var(--primary);
+      }
+
+      /* Cards & Items */
+      .job,
+      .project,
+      .edu-item {
+        margin-bottom: 2.5rem;
+        background-color: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+        border-left: 4px solid var(--primary);
+        position: relative;
+        overflow: hidden;
+      }
+
+      section:nth-child(odd) .job,
+      section:nth-child(odd) .project,
+      section:nth-child(odd) .edu-item {
+        background-color: var(--light);
+      }
+
+      .job:hover,
+      .project:hover,
+      .edu-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .job::before,
+      .project::before,
+      .edu-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(76, 201, 240, 0.05) 0%,
+          rgba(67, 97, 238, 0.05) 100%
+        );
+        z-index: 0;
+      }
+
+      .job-header,
+      .project-header,
+      .edu-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+
+      .job-date,
+      .project-date,
+      .edu-date {
+        color: var(--text-light);
+        font-size: 0.9rem;
+        background-color: rgba(76, 201, 240, 0.1);
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+
+      .job-date i,
+      .project-date i,
+      .edu-date i {
+        color: var(--accent);
+      }
+
+      .job p,
+      .project p,
+      .edu-item p {
+        position: relative;
+        z-index: 1;
+      }
+
+      .job ul,
+      .project ul {
+        list-style: none;
+        margin-top: 1rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .job ul li,
+      .project ul li {
+        margin-bottom: 0.75rem;
+        padding-left: 1.5rem;
+        position: relative;
+      }
+
+      .job ul li::before,
+      .project ul li::before {
+        content: "•";
+        color: var(--primary);
+        font-weight: bold;
+        font-size: 1.2rem;
+        position: absolute;
+        left: 0;
+        top: -0.1rem;
+      }
+
+      /* Skills section */
+      .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+
+      .skill-category {
+        flex: 1;
+        min-width: 280px;
+        background-color: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      section:nth-child(odd) .skill-category {
+        background-color: var(--light);
+      }
+
+      .skill-category:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .skill-category::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+      }
+
+      .skill-category h4 {
+        margin-bottom: 1.5rem;
+        color: var(--dark);
+        text-align: center;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .skill-category h4 i {
+        color: var(--primary);
+      }
+
+      .skill-list {
+        list-style: none;
+        flex-grow: 1;
+      }
+
+      .skill-list li {
+        margin-bottom: 0.75rem;
+        padding: 0.5rem 1rem;
+        position: relative;
+        background-color: rgba(76, 201, 240, 0.05);
+        border-radius: 6px;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+      }
+
+      .skill-list li:hover {
+        background-color: rgba(76, 201, 240, 0.1);
+        transform: translateX(5px);
+      }
+
+      .skill-list li::before {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background-color: var(--primary);
+        border-radius: 50%;
+        margin-right: 0.75rem;
+      }
+
+      /* About section */
+      #about .container > p {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--text);
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--dark);
+        color: white;
+        text-align: center;
+        padding: 3rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+          45deg,
+          rgba(76, 201, 240, 0.1) 0%,
+          rgba(67, 97, 238, 0.1) 100%
+        );
+        z-index: 0;
+      }
+
+      footer .container {
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-links {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .footer-links a {
+        color: white;
+        text-decoration: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+
+      .footer-links a:hover {
+        background-color: var(--primary);
+        transform: translateY(-3px);
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+
+      .fade-in.appear {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Back to top button */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: var(--primary);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        z-index: 99;
+      }
+
+      .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background-color: var(--secondary);
+        transform: translateY(-3px);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2.2rem;
+        }
+
+        h2 {
+          font-size: 1.8rem;
+        }
+
+        h3 {
+          font-size: 1.3rem;
+        }
+
+        .job-header,
+        .project-header,
+        .edu-header {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .job-date,
+        .project-date,
+        .edu-date {
+          align-self: flex-start;
+        }
+
+        nav ul {
+          flex-wrap: wrap;
+        }
+
+        nav a {
+          font-size: 0.9rem;
+          padding: 0.4rem 0.7rem;
+        }
+
+        .contact-links {
+          gap: 0.5rem;
+        }
+
+        .contact-links a {
+          padding: 0.4rem 0.8rem;
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        section {
+          padding: 3rem 0;
+        }
+
+        .job,
+        .project,
+        .edu-item,
+        .skill-category {
+          padding: 1.5rem;
+        }
+
+        .profile-img {
+          width: 120px;
+          height: 120px;
+          font-size: 2.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="profile-img">S</div>
+        <h1>SACHIN SOLANKI</h1>
+        <p>
+          Business Intelligence Analyst | Data Science Researcher | Flutter
+          Developer
+        </p>
+        <div class="contact-links">
+          <a href="mailto:codesachin501@gmail.com"
+            ><i class="fas fa-envelope"></i> codesachin501@gmail.com</a
+          >
+          <a href="tel:9265028231"><i class="fas fa-phone"></i> 9265028231</a>
+          <a href="https://linkedin.com/in/YOUR-LINKEDIN" target="_blank"
+            ><i class="fab fa-linkedin"></i> LinkedIn</a
+          >
+          <a href="https://github.com/YOUR-GITHUB" target="_blank"
+            ><i class="fab fa-github"></i> GitHub</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <nav id="navbar">
+      <ul>
+        <li>
+          <a href="#about"><i class="fas fa-user"></i> About</a>
+        </li>
+        <li>
+          <a href="#experience"><i class="fas fa-briefcase"></i> Experience</a>
+        </li>
+        <li>
+          <a href="#education"
+            ><i class="fas fa-graduation-cap"></i> Education</a
+          >
+        </li>
+        <li>
+          <a href="#projects"
+            ><i class="fas fa-project-diagram"></i> Projects</a
+          >
+        </li>
+        <li>
+          <a href="#research"><i class="fas fa-flask"></i> Research</a>
+        </li>
+        <li>
+          <a href="#skills"><i class="fas fa-tools"></i> Skills</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section id="about">
+      <div class="container">
+        <h2 class="fade-in">About Me</h2>
+        <p class="fade-in">
+          Recent B.Tech graduate in Computer Science with experience in business
+          intelligence, data science, and mobile application development.
+          Passionate about leveraging data analytics and machine learning to
+          drive business solutions. Published researcher in computer vision with
+          expertise in Power BI, Python, and Flutter development.
+        </p>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <h2 class="fade-in">Professional Experience</h2>
+
+        <div class="job fade-in">
+          <div class="job-header">
+            <h3>Business Intelligence Analyst | Project Intern</h3>
+            <span class="job-date"
+              ><i class="far fa-calendar-alt"></i> JANUARY 2024 - MAY 2024</span
+            >
+          </div>
+          <p><strong>iNeuron Intelligence Pvt. Ltd.</strong></p>
+          <ul>
+            <li>
+              Harnessed the power of Power BI, Excel, and Tableau for
+              comprehensive data analysis and visualization.
+            </li>
+            <li>
+              Crafted interactive dashboards that unveil sales, inventory, and
+              customer trends.
+            </li>
+            <li>
+              Enhanced decision-making processes with advanced data analytics
+              and reporting tools, driving business growth.
+            </li>
+          </ul>
+        </div>
+
+        <div class="job fade-in">
+          <div class="job-header">
+            <h3>Data Science Researcher | Project Intern</h3>
+            <span class="job-date"
+              ><i class="far fa-calendar-alt"></i> MAY 2023 - JUNE 2023</span
+            >
+          </div>
+          <p><strong>Exposys Data Labs Pvt. Ltd.</strong></p>
+          <ul>
+            <li>
+              Leveraged Python for sophisticated data preprocessing, analysis,
+              and segmentation of data.
+            </li>
+            <li>
+              Utilized cutting-edge machine learning algorithms to uncover
+              distinct customer groups and behavior patterns.
+            </li>
+            <li>
+              Delivered actionable insights to marketing teams for and
+              personalized strategies.
+            </li>
+          </ul>
+        </div>
+
+        <div class="job fade-in">
+          <div class="job-header">
+            <h3>Flutter Application Developer | Intern Trainee</h3>
+            <span class="job-date"
+              ><i class="far fa-calendar-alt"></i> MAY 2022 - JULY 2022</span
+            >
+          </div>
+          <p><strong>Kintu Designs Pvt. Ltd.</strong></p>
+          <ul>
+            <li>
+              Engineered cross-platform mobile applications using Flutter for
+              both Android and iOS.
+            </li>
+            <li>
+              Designed intuitive and responsive UI/UX to captivate and engage
+              users.
+            </li>
+            <li>
+              Integrated robust backend services and APIs for seamless
+              functionality and data synchronization.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <h2 class="fade-in">Education</h2>
+
+        <div class="edu-item fade-in">
+          <div class="edu-header">
+            <h3>B. Tech in Computer Science and Engineering</h3>
+            <span class="edu-date"
+              ><i class="far fa-calendar-alt"></i> OCT 2020 - MAY 2024</span
+            >
+          </div>
+          <p><strong>Charusat University - Changa (GUJ)</strong></p>
+          <p>
+            <i class="fas fa-award" style="color: var(--primary)"></i> CGPA:
+            <strong>8.84</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <h2 class="fade-in">Projects</h2>
+
+        <div class="project fade-in">
+          <div class="project-header">
+            <h3>Amazon Sales Data Analysis</h3>
+            <span class="project-date"
+              ><i class="far fa-calendar-alt"></i> MARCH 2024 - APRIL 2024</span
+            >
+          </div>
+          <p>
+            <strong
+              ><i class="fas fa-tools" style="color: var(--primary)"></i> Tools:
+              PowerBI Desktop, Excel, DAX</strong
+            >
+          </p>
+          <ul>
+            <li>
+              Conducted a personal project analyzing Amazon sales data using
+              Power BI.
+            </li>
+            <li>
+              Developed interactive reports and dashboards to visualize sales
+              trends, customer behavior, and product performance.
+            </li>
+            <li>
+              Provided insights to optimize sales strategies and improve
+              business performance.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="container">
+        <h2 class="fade-in">Research Work</h2>
+
+        <div class="project fade-in">
+          <div class="project-header">
+            <h3>IEEE Research Paper</h3>
+            <span class="project-date"
+              ><i class="far fa-calendar-alt"></i> JULY 2023 - DECEMBER
+              2023</span
+            >
+          </div>
+          <p>
+            <strong
+              ><i class="fas fa-file-alt" style="color: var(--primary)"></i>
+              Unveiling Anomalies in Surveillance Videos Through Various
+              Transfer Learning Models</strong
+            >
+          </p>
+          <ul>
+            <li>Published an innovative research paper on IEEE.</li>
+            <li>
+              Exploited state-of-the-art transfer learning models like VGG16,
+              ResNet50, VGG19, and DenseNet121 for groundbreaking anomaly
+              detection.
+            </li>
+            <li>
+              Conducted rigorous experiments and analysis to reveal anomalies in
+              surveillance videos, making significant contributions to the
+              fields of computer vision and security.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <h2 class="fade-in">Skills & Expertise</h2>
+
+        <div class="skills-container">
+          <div class="skill-category fade-in">
+            <h4>
+              <i class="fas fa-chart-bar"></i> Data Analysis & Visualization
+            </h4>
+            <ul class="skill-list">
+              <li>PowerBI Desktop</li>
+              <li>Excel</li>
+              <li>Tableau</li>
+              <li>DAX</li>
+              <li>Data Preprocessing</li>
+            </ul>
+          </div>
+
+          <div class="skill-category fade-in">
+            <h4><i class="fas fa-code"></i> Programming & Scripting</h4>
+            <ul class="skill-list">
+              <li>Python</li>
+              <li>C++</li>
+              <li>Dart</li>
+              <li>Flutter</li>
+              <li>Machine Learning</li>
+            </ul>
+          </div>
+
+          <div class="skill-category fade-in">
+            <h4><i class="fas fa-laptop-code"></i> Development Tools</h4>
+            <ul class="skill-list">
+              <li>Git</li>
+              <li>GitHub</li>
+              <li>GitLab</li>
+              <li>Jupyter</li>
+              <li>Colab</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>© 2024 Sachin Solanki. All Rights Reserved.</p>
+        <div class="footer-links">
+          <a href="mailto:codesachin501@gmail.com" title="Email"
+            ><i class="fas fa-envelope"></i
+          ></a>
+          <a
+            href="https://linkedin.com/in/YOUR-LINKEDIN"
+            target="_blank"
+            title="LinkedIn"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+          <a
+            href="https://github.com/YOUR-GITHUB"
+            target="_blank"
+            title="GitHub"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a href="tel:9265028231" title="Phone"
+            ><i class="fas fa-phone"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop" title="Back to Top">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+      // Smooth scrolling for navigation
+      document.querySelectorAll("nav a").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          const targetSection = document.querySelector(targetId);
+          window.scrollTo({
+            top: targetSection.offsetTop - 60,
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Scroll animations
+      function checkFade() {
+        const fadeElements = document.querySelectorAll(".fade-in");
+        const windowHeight = window.innerHeight;
+
+        fadeElements.forEach((element) => {
+          const elementTop = element.getBoundingClientRect().top;
+          if (elementTop < windowHeight - 100) {
+            element.classList.add("appear");
+          }
+        });
+      }
+
+      // Sticky navbar effect
+      function handleScroll() {
+        const navbar = document.getElementById("navbar");
+        const backToTop = document.getElementById("backToTop");
+
+        if (window.scrollY > 100) {
+          navbar.classList.add("scrolled");
+          backToTop.classList.add("visible");
+        } else {
+          navbar.classList.remove("scrolled");
+          backToTop.classList.remove("visible");
+        }
+
+        checkFade();
+      }
+
+      // Back to top functionality
+      document
+        .getElementById("backToTop")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+
+      // Initial check and event listeners
+      window.addEventListener("scroll", handleScroll);
+      window.addEventListener("load", checkFade);
+      window.addEventListener("resize", checkFade);
+    </script>
+  </body>
+</html>
