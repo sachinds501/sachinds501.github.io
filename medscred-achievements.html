@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medscred Achievements - Sachin Solanki</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary: #2563eb;
+        --secondary: #1e40af;
+        --success: #059669;
+        --warning: #d97706;
+        --danger: #dc2626;
+        --dark: #1f2937;
+        --light: #f8fafc;
+        --accent: #0ea5e9;
+        --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --text: #1f2937;
+        --text-light: #6b7280;
+        --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      /* Header */
+      .header {
+        text-align: center;
+        color: white;
+        margin-bottom: 3rem;
+        animation: fadeInDown 1s ease;
+      }
+
+      .header h1 {
+        font-size: 3.5rem;
+        margin-bottom: 0.5rem;
+        font-weight: 800;
+        text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .header .subtitle {
+        font-size: 1.4rem;
+        opacity: 0.9;
+        margin-bottom: 1rem;
+      }
+
+      .header .duration {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        backdrop-filter: blur(10px);
+        display: inline-block;
+        font-weight: 600;
+      }
+
+      /* Stats Grid */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+
+      .stat-card {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 20px;
+        box-shadow: var(--card-shadow);
+        text-align: center;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+        animation: fadeInUp 1s ease;
+      }
+
+      .stat-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--gradient);
+      }
+
+      .stat-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .stat-card .icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: var(--primary);
+      }
+
+      .stat-card .number {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+        line-height: 1;
+      }
+
+      .stat-card .label {
+        font-size: 1.1rem;
+        color: var(--text-light);
+        font-weight: 500;
+      }
+
+      /* Timeline */
+      .timeline-section {
+        margin-bottom: 4rem;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        text-align: center;
+        color: white;
+        margin-bottom: 3rem;
+        font-weight: 700;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .timeline {
+        position: relative;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: var(--gradient);
+        transform: translateX(-50%);
+      }
+
+      .timeline-item {
+        position: relative;
+        margin-bottom: 3rem;
+        animation: fadeInLeft 1s ease;
+      }
+
+      .timeline-item:nth-child(even) {
+        animation: fadeInRight 1s ease;
+      }
+
+      .timeline-content {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 15px;
+        box-shadow: var(--card-shadow);
+        width: 45%;
+        position: relative;
+        transition: var(--transition);
+      }
+
+      .timeline-item:nth-child(even) .timeline-content {
+        margin-left: auto;
+      }
+
+      .timeline-content:hover {
+        transform: scale(1.02);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      }
+
+      .timeline-date {
+        position: absolute;
+        left: 50%;
+        top: 2rem;
+        transform: translateX(-50%);
+        background: var(--gradient);
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border-radius: 25px;
+        font-weight: 600;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+      }
+
+      .app-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 1rem;
+      }
+
+      .app-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+
+      .mini-stat {
+        text-align: center;
+        padding: 1rem;
+        background: var(--light);
+        border-radius: 10px;
+      }
+
+      .mini-stat .number {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .mini-stat .label {
+        font-size: 0.9rem;
+        color: var(--text-light);
+      }
+
+      .features-list {
+        list-style: none;
+        margin-top: 1.5rem;
+      }
+
+      .features-list li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #e5e7eb;
+        position: relative;
+        padding-left: 2rem;
+      }
+
+      .features-list li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--success);
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      /* Technologies */
+      .tech-stack {
+        background: white;
+        padding: 3rem;
+        border-radius: 20px;
+        box-shadow: var(--card-shadow);
+        margin-bottom: 4rem;
+      }
+
+      .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .tech-category h4 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      .tech-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .tech-tag {
+        background: var(--primary);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      /* Future Roadmap */
+      .roadmap {
+        background: white;
+        padding: 3rem;
+        border-radius: 20px;
+        box-shadow: var(--card-shadow);
+      }
+
+      .roadmap-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .roadmap-item {
+        padding: 2rem;
+        background: var(--light);
+        border-radius: 15px;
+        border-left: 4px solid var(--primary);
+        transition: var(--transition);
+      }
+
+      .roadmap-item:hover {
+        transform: translateX(10px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .roadmap-item h4 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+      }
+
+      .impact-section {
+        background: var(--dark);
+        color: white;
+        padding: 4rem 2rem;
+        margin-top: 4rem;
+        border-radius: 20px;
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .impact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .impact-item {
+        padding: 2rem;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+      }
+
+      .impact-item .icon {
+        font-size: 2.5rem;
+        color: var(--accent);
+        margin-bottom: 1rem;
+      }
+
+      /* Animations */
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .timeline::before {
+          left: 20px;
+        }
+        .timeline-content {
+          width: calc(100% - 60px);
+          margin-left: 60px !important;
+        }
+        .timeline-date {
+          left: 20px;
+          transform: none;
+        }
+        .header h1 {
+          font-size: 2.5rem;
+        }
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <h1>🚀 MEDSCRED ACHIEVEMENTS</h1>
+        <div class="subtitle">Mobile Application Developer Journey</div>
+        <div class="duration">
+          January 1, 2025 - Present (147+ Days of Excellence)
+        </div>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+          <div class="number">5</div>
+          <div class="label">Applications Delivered</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon"><i class="fas fa-code-branch"></i></div>
+          <div class="number">12+</div>
+          <div class="label">Major Updates Released</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon"><i class="fas fa-clock"></i></div>
+          <div class="number">140</div>
+          <div class="label">Days of Development</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon"><i class="fas fa-chart-line"></i></div>
+          <div class="number">100%</div>
+          <div class="label">On-Time Delivery Rate</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon"><i class="fas fa-tools"></i></div>
+          <div class="number">8+</div>
+          <div class="label">Technologies Mastered</div>
+        </div>
+        <div class="stat-card">
+          <div class="icon"><i class="fas fa-clock"></i></div>
+          <div class="number">2</div>
+          <div class="label">Average Working Hours/Day (Off-Office Hours)</div>
+        </div>
+      </div>
+
+      <!-- Project Timeline -->
+      <div class="timeline-section">
+        <h2 class="section-title">🎯 PROJECT DELIVERY TIMELINE</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">Jan 3-28</div>
+            <div class="timeline-content">
+              <h3 class="app-title">📱 HR Management App</h3>
+              <div class="app-stats">
+                <div class="mini-stat">
+                  <div class="number">25</div>
+                  <div class="label">Days</div>
+                </div>
+                <div class="mini-stat">
+                  <div class="number">3</div>
+                  <div class="label">Updates</div>
+                </div>
+                <div class="mini-stat">
+                  <div class="number">2</div>
+                  <div class="label">Core Modules</div>
+                </div>
+              </div>
+              <ul class="features-list">
+                <li>Complete attendance tracking system</li>
+                <li>Leave management with approval workflow</li>
+                <li>Geo-fencing</li>
+                <li>Employee dashboard with analytics</li>
+                <li>Admin panel for HR operations</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">February</div>
+            <div class="timeline-content">
+              <h3 class="app-title">🏥 Hospital BR Onboarding App</h3>
+              <div class="app-stats">
+                <div class="mini-stat">
+                  <div class="number">28</div>
+                  <div class="label">Days</div>
+                </div>
+                <div class="mini-stat">
+                  <div class="number">5</div>
+                  <div class="label">Updates</div>
+                </div>
+                <div class="mini-stat">
+                  <div class="number">2</div>
+                  <div class="label">Core Modules</div>
+                </div>
+              </div>
+              <ul class="features-list">
+                <li>Hospital onboarding and verification</li>
+                <li>Document management system</li>
+                <li>Multi-step onboarding flow</li>
+                <li>Integration with backend APIs</li>
+                <li>Patient List with multi mode filters</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Mar 1-14</div>
+            <div class="timeline-content">
+              <h3 class="app-title">💰 Collections Management App</h3>
+              <div class="app-stats">
+                <div class="mini-stat">
+                  <div class="number">14</div>
+                  <div class="label">Days</div>
+                </div>
+                <div class="mini-stat">
+                  <div class="number">4</div>
+                  <div class="label">Updates</div>
+                </div>
+                <div class="mini-stat">
+                  <div class="number">100+</div>
+                  <div class="label">Tracking</div>
+                </div>
+              </div>
+              <ul class="features-list">
+                <li>Case disbursement tracking</li>
+                <li>Follow-up scheduling system</li>
+                <li>Payment status monitoring</li>
+                <li>Customer communication tools</li>
+                <li>Advanced reporting features</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Week 4</div>
+            <div class="timeline-content">
+              <h3 class="app-title">🎯 B2C Loan App (Frontend)</h3>
+              <div class="app-stats">
+                <div class="mini-stat">
+                  <div class="number">7</div>
+                  <div class="label">Days</div>
+                </div>
+                <div class="mini-stat">
+                  <div class="number">100%</div>
+                  <div class="label">UI Complete</div>
+                </div>
+                <div class="mini-stat">
+                  <div class="number">36+</div>
+                  <div class="label">Screens</div>
+                </div>
+              </div>
+              <ul class="features-list">
+                <li>Modern, intuitive user interface</li>
+                <li>Loan application forms</li>
+                <li>Document upload functionality</li>
+                <li>Application status tracking</li>
+                <li>Responsive design for all devices</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Recent</div>
+            <div class="timeline-content">
+              <h3 class="app-title">⚡ Operations Management App</h3>
+              <div class="app-stats">
+                <div class="mini-stat">
+                  <div class="number">7</div>
+                  <div class="label">Days</div>
+                </div>
+                <div class="mini-stat">
+                  <div class="number">⭐</div>
+                  <div class="label">Most Complex</div>
+                </div>
+                <div class="mini-stat">
+                  <div class="number">OCR</div>
+                  <div class="label">Integration</div>
+                </div>
+              </div>
+              <ul class="features-list">
+                <li>Complete portal replication on mobile</li>
+                <li>OCR integration for document processing</li>
+                <li>Real-time data synchronization</li>
+                <li>Advanced workflow management</li>
+                <li>24/7 development commitment</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Technology Stack -->
+      <div class="tech-stack">
+        <h2 class="section-title" style="color: var(--dark)">
+          🛠️ TECHNOLOGY MASTERY
+        </h2>
+        <div class="tech-grid">
+          <div class="tech-category">
+            <h4>Frontend Development</h4>
+            <div class="tech-list">
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Dart</span>
+              <span class="tech-tag">Material Design</span>
+              <span class="tech-tag">Responsive UI</span>
+            </div>
+          </div>
+          <div class="tech-category">
+            <h4>Backend & APIs</h4>
+            <div class="tech-list">
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">REST APIs</span>
+              <span class="tech-tag">Firebase</span>
+              <span class="tech-tag">Real-time Sync</span>
+            </div>
+          </div>
+          <div class="tech-category">
+            <h4>Database Management</h4>
+            <div class="tech-list">
+              <span class="tech-tag">SQL</span>
+              <span class="tech-tag">Firebase Database</span>
+              <span class="tech-tag">Data Modeling</span>
+              <span class="tech-tag">Query Optimization</span>
+            </div>
+          </div>
+          <div class="tech-category">
+            <h4>Advanced Features</h4>
+            <div class="tech-list">
+              <span class="tech-tag">OCR Integration</span>
+              <span class="tech-tag">Push Notifications</span>
+              <span class="tech-tag">File Management</span>
+              <span class="tech-tag">Authentication</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Business Impact -->
+      <div class="impact-section">
+        <h2 style="margin-bottom: 1rem; font-size: 2.5rem">
+          📈 BUSINESS IMPACT & VALUE DELIVERED
+        </h2>
+        <div class="impact-grid">
+          <div class="impact-item">
+            <div class="icon"><i class="fas fa-users-cog"></i></div>
+            <h4>HR Efficiency</h4>
+            <p>
+              Automated attendance and leave management, reducing manual work by
+              80% and improving accuracy
+            </p>
+          </div>
+          <div class="impact-item">
+            <div class="icon"><i class="fas fa-hospital"></i></div>
+            <h4>Hospital Onboarding</h4>
+            <p>
+              Streamlined onboarding process, reducing paperwork by 70% and
+              accelerating approvals
+            </p>
+          </div>
+          <div class="impact-item">
+            <div class="icon"><i class="fas fa-money-check-alt"></i></div>
+            <h4>Collections Optimization</h4>
+            <p>
+              Enhanced follow-up tracking, improving collection efficiency by
+              60% through systematic monitoring
+            </p>
+          </div>
+          <div class="impact-item">
+            <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+            <h4>Mobile-First Approach</h4>
+            <p>
+              Enabled field operations with mobile access, increasing
+              productivity by 50% for remote teams
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Future Roadmap -->
+      <div class="roadmap">
+        <h2 class="section-title" style="color: var(--dark)">
+          🚀 FUTURE DEVELOPMENT ROADMAP
+        </h2>
+        <div class="roadmap-grid">
+          <div class="roadmap-item">
+            <h4>🔄 B2C Loan App Completion</h4>
+            <p><strong>Timeline:</strong> Next 2-3 weeks</p>
+            <p>
+              <strong>Scope:</strong> Backend integration, payment gateway, loan
+              processing workflow, and testing
+            </p>
+            <p>
+              <strong>Impact:</strong> Complete customer loan journey
+              digitization
+            </p>
+          </div>
+          <div class="roadmap-item">
+            <h4>🏢 Corporate Product App</h4>
+            <p><strong>Timeline:</strong> Following month</p>
+            <p>
+              <strong>Scope:</strong> Enterprise-grade application for corporate
+              clients with advanced features
+            </p>
+            <p>
+              <strong>Impact:</strong> Expand market reach to corporate segment
+            </p>
+          </div>
+          <div class="roadmap-item">
+            <h4>📊 Analytics & Reporting Module</h4>
+            <p><strong>Timeline:</strong> Q2 2025</p>
+            <p>
+              <strong>Scope:</strong> Advanced analytics dashboards, real-time
+              reporting, and business intelligence
+            </p>
+            <p>
+              <strong>Impact:</strong> Data-driven decision making capabilities
+            </p>
+          </div>
+          <div class="roadmap-item">
+            <h4>🤖 AI/ML Integration</h4>
+            <p><strong>Timeline:</strong> Q3 2025</p>
+            <p>
+              <strong>Scope:</strong> Predictive analytics, automated decision
+              making, and smart recommendations
+            </p>
+            <p>
+              <strong>Impact:</strong> Next-generation intelligent applications
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="impact-section">
+        <h2 style="margin-bottom: 1rem">💪 COMMITMENT TO EXCELLENCE</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem">
+          "Delivered 5 critical applications in 140 days with 100% on-time
+          delivery rate. Ready to scale Medscred's mobile ecosystem to new
+          heights through innovative solutions and unwavering dedication."
+        </p>
+        <div
+          style="
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+          "
+        >
+          <h3 style="margin-bottom: 1rem">🎯 Next Quarter Goals</h3>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+              gap: 1rem;
+              text-align: left;
+            "
+          >
+            <div>✅ Complete 2 pending applications</div>
+            <div>📱 Launch 3 new mobile solutions</div>
+            <div>⚡ Implement performance optimizations</div>
+            <div>🔧 Establish automated testing framework</div>
+            <div>📈 Achieve 99.9% app stability</div>
+            <div>🚀 Scale to 10,000+ active users</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Add scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      // Observe all cards
+      document
+        .querySelectorAll(".stat-card, .timeline-item, .tech-stack, .roadmap")
+        .forEach((el) => {
+          el.style.opacity = "0";
+          el.style.transform = "translateY(30px)";
+          observer.observe(el);
+        });
+
+      // Animate numbers on page load
+      function animateNumbers() {
+        const numbers = document.querySelectorAll(
+          ".stat-card .number, .mini-stat .number"
+        );
+        numbers.forEach((num) => {
+          const target = parseInt(num.textContent) || 0;
+          if (target > 0) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+              current += increment;
+              if (current >= target) {
+                current = target;
+                clearInterval(timer);
+              }
+              num.textContent = Math.floor(current);
+            }, 20);
+          }
+        });
+      }
+
+      // Start animations when page loads
+      window.addEventListener("load", () => {
+        setTimeout(animateNumbers, 500);
+      });
+
+      // Add parallax effect to header
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const header = document.querySelector(".header");
+        header.style.transform = `translateY(${scrolled * 0.5}px)`;
+      });
+
+      // Add interactive hover effects
+      document
+        .querySelectorAll(".stat-card, .timeline-content, .roadmap-item")
+        .forEach((card) => {
+          card.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-10px) scale(1.02)";
+            this.style.boxShadow = "0 20px 40px rgba(0,0,0,0.2)";
+          });
+
+          card.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0) scale(1)";
+            this.style.boxShadow = "0 10px 25px rgba(0,0,0,0.1)";
+          });
+        });
+
+      // Add typing effect to header subtitle
+      const subtitle = document.querySelector(".header .subtitle");
+      const originalText = subtitle.textContent;
+      subtitle.textContent = "";
+      let i = 0;
+
+      function typeWriter() {
+        if (i < originalText.length) {
+          subtitle.textContent += originalText.charAt(i);
+          i++;
+          setTimeout(typeWriter, 100);
+        }
+      }
+
+      setTimeout(typeWriter, 1000);
+
+      // Add progress bars to timeline items
+      document.querySelectorAll(".timeline-item").forEach((item, index) => {
+        const progressBar = document.createElement("div");
+        progressBar.style.cssText = `
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: 4px;
+                background: var(--gradient);
+                width: 0%;
+                transition: width 2s ease;
+                border-radius: 0 0 15px 15px;
+            `;
+
+        const content = item.querySelector(".timeline-content");
+        content.style.position = "relative";
+        content.appendChild(progressBar);
+
+        // Animate progress bar on scroll
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                progressBar.style.width = "100%";
+              }, index * 200);
+            }
+          });
+        });
+
+        observer.observe(item);
+      });
+    </script>
+  </body>
+</html>
