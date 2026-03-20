@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kushal & Tanvi Wedding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Sans+Gujarati:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --maroon:     #8B001E;
+    --dark-red:   #6B0015;
+    --gold:       #B8892A;
+    --light-gold: #D4A843;
+    --cream:      #FFF8EB;
+    --parchment:  #F5EDDA;
+    --warm-white: #FFFDF7;
+    --text-dark:  #2C1810;
+    --text-med:   #5C3020;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    background-image:
+      radial-gradient(ellipse at 20% 20%, rgba(184,137,42,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(139,0,30,0.06) 0%, transparent 60%),
+      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B8892A' fill-opacity='0.04'%3E%3Cpath d='M30 0 L36 24 L60 30 L36 36 L30 60 L24 36 L0 30 L24 24Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    min-height: 100vh;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── Petal particles ── */
+  .petal {
+    position: fixed;
+    top: -30px;
+    font-size: 18px;
+    animation: fall linear infinite;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+  @keyframes fall {
+    0%   { transform: translateY(-30px) rotate(0deg) translateX(0); opacity: 0.7; }
+    50%  { transform: translateY(50vh) rotate(180deg) translateX(30px); opacity: 0.5; }
+    100% { transform: translateY(110vh) rotate(360deg) translateX(-20px); opacity: 0; }
+  }
+
+  /* ── Main wrapper ── */
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+
+  /* ── Outer decorative frame ── */
+  .frame {
+    background: var(--warm-white);
+    border: 3px solid var(--gold);
+    box-shadow:
+      0 0 0 6px var(--cream),
+      0 0 0 9px var(--maroon),
+      0 0 0 12px var(--gold),
+      0 8px 40px rgba(139,0,30,0.15),
+      0 20px 80px rgba(0,0,0,0.08);
+    padding: 40px 36px 50px;
+    position: relative;
+    animation: fadeUp 1s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Corner ornaments */
+  .frame::before, .frame::after {
+    content: '✦';
+    position: absolute;
+    font-size: 22px;
+    color: var(--gold);
+  }
+  .frame::before { top: 14px; left: 18px; }
+  .frame::after  { top: 14px; right: 18px; }
+  .corner-bl, .corner-br {
+    position: absolute;
+    font-size: 22px;
+    color: var(--gold);
+  }
+  .corner-bl { bottom: 18px; left: 18px; }
+  .corner-br { bottom: 18px; right: 18px; }
+
+  /* ── Ganesh invocation ── */
+  .ganesh {
+    text-align: center;
+    font-family: 'Noto Sans Gujarati', sans-serif;
+    font-size: 15px;
+    color: var(--gold);
+    letter-spacing: 3px;
+    margin-bottom: 6px;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+
+  /* ── Mangal Vivah heading ── */
+  .mangal {
+    text-align: center;
+    font-family: 'Noto Sans Gujarati', sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--maroon);
+    line-height: 1.2;
+    margin-bottom: 4px;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+
+  /* ── Ornament divider ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 0;
+    animation: fadeUp 1s 0.35s ease both;
+  }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+  .divider-diamond {
+    color: var(--gold);
+    font-size: 14px;
+  }
+
+  /* ── Names block ── */
+  .names-block {
+    text-align: center;
+    margin: 10px 0 6px;
+    animation: fadeUp 1s 0.4s ease both;
+  }
+  .name-gu {
+    font-family: 'Noto Sans Gujarati', sans-serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--maroon);
+    line-height: 1.1;
+  }
+  .name-connector {
+    font-size: 32px;
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    display: block;
+    margin: 2px 0;
+  }
+  .name-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--text-med);
+    letter-spacing: 2px;
+    margin-top: 4px;
+  }
+
+  /* ── Subheading ── */
+  .shubh-lagna {
+    text-align: center;
+    font-family: 'Noto Sans Gujarati', sans-serif;
+    font-size: 18px;
+    color: var(--gold);
+    margin-bottom: 6px;
+    animation: fadeUp 1s 0.45s ease both;
+  }
+
+  /* ── Section cards ── */
+  .section {
+    background: linear-gradient(135deg, var(--parchment) 0%, #FDF5E4 100%);
+    border: 1.5px solid rgba(184,137,42,0.4);
+    border-radius: 4px;
+    padding: 22px 24px 20px;
+    margin: 18px 0;
+    position: relative;
+    animation: fadeUp 1s ease both;
+  }
+  .section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--maroon), var(--gold), var(--maroon), transparent);
+  }
+
+  .section-title {
+    display: inline-block;
+    background: var(--maroon);
+    color: var(--cream);
+    font-family: 'Noto Sans Gujarati', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 5px 20px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .event-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+  .event-icon { font-size: 18px; flex-shrink: 0; }
+
+  .gu-label {
+    font-family: 'Noto Sans Gujarati', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--maroon);
+  }
+  .en-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--text-med);
+  }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 20px;
+    margin-top: 12px;
+  }
+  .detail-item {}
+  .detail-key {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .detail-val-gu {
+    font-family: 'Noto Sans Gujarati', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--maroon);
+    display: block;
+  }
+  .detail-val-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--text-med);
+    display: block;
+  }
+
+  .time-big {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 500;
+    color: var(--maroon);
+    letter-spacing: 2px;
+    text-align: center;
+    margin: 8px 0 2px;
+  }
+  .time-gu {
+    font-family: 'Noto Sans Gujarati', sans-serif;
+    font-size: 20px;
+    color: var(--text-med);
+    text-align: center;
+  }
+
+  /* ── Venue section ── */
+  .venue-name-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--dark-red);
+    text-align: center;
+    margin: 6px 0 2px;
+  }
+  .venue-name-gu {
+    font-family: 'Noto Sans Gujarati', sans-serif;
+    font-size: 20px;
+    color: var(--text-med);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .venue-addr {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--text-med);
+    text-align: center;
+    font-style: italic;
+  }
+
+  .map-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 16px auto 0;
+    background: var(--maroon);
+    color: var(--cream);
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 2px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+    width: fit-content;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 4px 15px rgba(139,0,30,0.3);
+  }
+  .map-btn:hover { background: var(--dark-red); transform: translateY(-2px); }
+  .map-btn .btn-gu {
+    font-family: 'Noto Sans Gujarati', sans-serif;
+    font-size: 15px;
+  }
+
+  /* ── Schedule section ── */
+  .schedule-list { list-style: none; margin-top: 8px; }
+  .schedule-item {
+    display: flex;
+    align-items: center;
+    padding: 9px 0;
+    border-bottom: 1px dashed rgba(184,137,42,0.3);
+    gap: 14px;
+  }
+  .schedule-item:last-child { border-bottom: none; }
+  .s-icon { font-size: 20px; width: 28px; text-align: center; flex-shrink: 0; }
+  .s-text { flex: 1; }
+  .s-gu { font-family: 'Noto Sans Gujarati', sans-serif; font-size: 17px; font-weight: 600; color: var(--maroon); }
+  .s-en { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: var(--text-med); }
+  .s-time { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--gold); font-weight: 600; text-align: right; white-space: nowrap; }
+
+  /* ── Highlight box for missed items ── */
+  .highlight-note {
+    background: linear-gradient(135deg, rgba(139,0,30,0.06), rgba(184,137,42,0.08));
+    border-left: 4px solid var(--maroon);
+    padding: 10px 14px;
+    margin-top: 14px;
+    border-radius: 0 4px 4px 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    color: var(--text-med);
+    font-style: italic;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    margin-top: 30px;
+    animation: fadeUp 1s 0.9s ease both;
+  }
+  .footer-names {
+    font-family: 'Noto Sans Gujarati', sans-serif;
+    font-size: 13px;
+    color: var(--text-med);
+    line-height: 1.8;
+  }
+  .footer-printer {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--gold);
+    margin-top: 12px;
+    letter-spacing: 1px;
+  }
+
+  /* ── Staggered animations ── */
+  .section:nth-child(1) { animation-delay: 0.5s; }
+  .section:nth-child(2) { animation-delay: 0.6s; }
+  .section:nth-child(3) { animation-delay: 0.7s; }
+  .section:nth-child(4) { animation-delay: 0.8s; }
+
+  @media (max-width: 480px) {
+    .frame { padding: 28px 18px 36px; }
+    .name-gu { font-size: 40px; }
+    .detail-grid { grid-template-columns: 1fr; }
+    .time-big { font-size: 36px; }
+    .venue-name-en { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Falling petals -->
+<div class="petal" style="left:5%;  animation-duration:7s;  animation-delay:0s;">🌸</div>
+<div class="petal" style="left:15%; animation-duration:9s;  animation-delay:1s;">🌺</div>
+<div class="petal" style="left:30%; animation-duration:6s;  animation-delay:2s;">🌸</div>
+<div class="petal" style="left:50%; animation-duration:8s;  animation-delay:0.5s;">🌼</div>
+<div class="petal" style="left:65%; animation-duration:7s;  animation-delay:3s;">🌸</div>
+<div class="petal" style="left:78%; animation-duration:10s; animation-delay:1.5s;">🌺</div>
+<div class="petal" style="left:90%; animation-duration:6s;  animation-delay:2.5s;">🌼</div>
+
+<div class="page">
+  <div class="frame">
+    <span class="corner-bl">✦</span>
+    <span class="corner-br">✦</span>
+
+    <!-- Ganesh -->
+    <div class="ganesh">॥ શ્રી ગણેશાય નમઃ ॥</div>
+
+    <!-- Names -->
+    <div class="names-block">
+      <div style="font-family:'Cormorant Garamond',serif; font-size:58px; font-weight:700; color:var(--maroon); line-height:1.2; letter-spacing:1px;">Kushal Weds Tanvi</div>
+    </div>
+
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-diamond">❖</div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- ── Hasta Melap ── -->
+    <div class="section" style="animation-delay:0.5s">
+      <div class="section-title">✦ હસ્તમેળાપ ✦</div>
+
+      <div class="detail-grid">
+        <div class="detail-item">
+          <span class="detail-key">Tithi</span>
+          <span class="detail-val-gu">ચૈત્ર સુદ અગિયારસ</span>
+        </div>
+      </div>
+
+      <div class="time-big">Sunday, 29 March 2026 at 2:15 PM</div>
+      <div class="time-gu">રવિવાર, તા. ૨૯-૦૩-૨૦૨૬ , બપોરે ૨:૧૫ કલાકે</div>
+    </div>
+
+    <!-- ── Wedding Venue ── -->
+    <div class="section" style="animation-delay:0.6s">
+      <div class="section-title">📍 લગ્ન સ્થળ </div>
+
+      <div class="venue-name-en">Hotel Royal Bloom</div>
+      <div class="venue-addr">Gandhi Road, Bardoli</div>
+
+      <a href="https://maps.app.goo.gl/L75iZAkcw6DeFvkY9" target="_blank" class="map-btn">
+        <span>📍</span>
+        <span>Get Directions</span>
+        <span class="btn-gu">• રસ્તો જુઓ</span>
+      </a>
+    </div>
+
+    <!-- ── Full Schedule ── -->
+    <div class="section" style="animation-delay:0.7s">
+      <div class="section-title">✦ માંગલિક પ્રસંગો ✦</div>
+      <ul class="schedule-list">
+        <li class="schedule-item">
+          <div class="s-icon">🪔</div>
+          <div class="s-text">
+            <div class="s-gu">મંડપ મુહૂર્ત</div>
+            <div class="s-en">Mandap Muhurt • Sat 28 Mar</div>
+          </div>
+          <div class="s-time">9:30 AM</div>
+        </li>
+        <li class="schedule-item">
+          <div class="s-icon">💛</div>
+          <div class="s-text">
+            <div class="s-gu">પીઠી મુહૂર્ત</div>
+            <div class="s-en">Pithi Muhurt • Sat 28 Mar</div>
+          </div>
+          <div class="s-time">10:30 AM</div>
+        </li>
+        <li class="schedule-item">
+          <div class="s-icon">🏠</div>
+          <div class="s-text">
+            <div class="s-gu">ગૃહશાંતિ</div>
+            <div class="s-en">Gruhshanti • Sat 28 Mar</div>
+          </div>
+          <div class="s-time">3:00 PM</div>
+        </li>
+        <li class="schedule-item">
+          <div class="s-icon">🍽️</div>
+          <div class="s-text">
+            <div class="s-gu">પ્રીતિ ભોજન</div>
+            <div class="s-en">Priti Bhojan • Sat 28 Mar</div>
+          </div>
+          <div class="s-time">6:00 PM</div>
+        </li>
+        <li class="schedule-item">
+          <div class="s-icon">🎶</div>
+          <div class="s-text">
+            <div class="s-gu">સંગીત સંધ્યા</div>
+            <div class="s-en">Sangeet Sandhya • Sat 28 Mar</div>
+          </div>
+          <div class="s-time">8:30 PM</div>
+        </li>
+        <li class="schedule-item">
+          <div class="s-icon">🎊</div>
+          <div class="s-text">
+            <div class="s-gu">જાન પ્રસ્થાન</div>
+            <div class="s-en">Janprashtan • Sun 29 Mar</div>
+          </div>
+          <div class="s-time">9:00 AM</div>
+        </li>
+        <li class="schedule-item" style="background:rgba(139,0,30,0.04); margin:0 -8px; padding:9px 8px; border-radius:4px;">
+          <div class="s-icon">💒</div>
+          <div class="s-text">
+            <div class="s-gu" style="color:var(--dark-red); font-size:19px;">હસ્તમેળાપ ✨</div>
+            <div class="s-en">Hasta Melap (Wedding) • Sun 29 Mar</div>
+          </div>
+          <div class="s-time" style="color:var(--maroon); font-size:18px; font-weight:700;">2:15 PM</div>
+        </li>
+      </ul>
+    </div>
+
+  </div><!-- /frame -->
+</div><!-- /page -->
+
+</body>
+</html>
